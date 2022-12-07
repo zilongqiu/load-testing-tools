@@ -1,0 +1,27 @@
+
+version: '3'
+
+services:
+  app:
+    image: node:14
+    command: bash -c "yarn && yarn start"
+    restart: unless-stopped
+    volumes:
+    - '.:/usr/src/app'
+    working_dir: /usr/src/app
+    ports:
+      - '3300:3300'
+  master:
+    image: locustio/locust
+    ports:
+     - "8089:8089"
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --master -H http://master:8089
+    depends_on:
+      - app 
+  worker:
+    image: locustio/locust
+    volumes:
+      - ./:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --worker --master-host master
