@@ -1,6 +1,8 @@
 # Docs
 
-[https://locust.io/](https://locust.io/)
+- Official: [https://locust.io/](https://locust.io/)
+- Documentation: [https://docs.locust.io/en/stable/](https://docs.locust.io/en/stable/)
+- Github: [https://github.com/locustio/locust](https://github.com/locustio/locust)
 
 # Commands
 
