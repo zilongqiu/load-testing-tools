@@ -6,4 +6,6 @@ Basic working example of different Load Testing Tools
 
 ## Table of Contents
 
-1. [Locust](./locust/README.md)
+1. [k6](./k6/README.md)
+2. [wrk](./wrk/README.md)
+3. [Locust](./locust/README.md)
