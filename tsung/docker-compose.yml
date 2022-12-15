@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  app:
+    extends:
+      file: ../docker/basic-nodejs-app/docker-compose.yml
+      service: app
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3300" ]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+  tsung:
+    image: ddragosd/tsung-docker:latest
+    volumes:
+       - ./sample.xml:/usr/local/tsung/mytest.xml
+       - ./local/tests:/usr/local/tsung
+    command: -f /usr/local/tsung/mytest.xml start
+    depends_on:
+      app:
+        condition: service_healthy
